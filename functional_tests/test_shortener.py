@@ -1,23 +1,20 @@
 from selenium import webdriver
-from django.contrib.staticfiles.testing import LiveServerTestCase
+import unittest
 
 
 
-class ShortenerTest(LiveServerTestCase):
+class ShortenerTest(unittest.TestCase):
     """docstring for FunctionalTest"""
 
     def setUp(self):
         self.browser=webdriver.Firefox()
-        # self.staging_server = os.environ.get('STAGING_SERVER')
-        # if self.staging_server:
-        #     self.live_server_url = 'http://' + self.staging_server
 
     def tearDown(self):
         self.browser.quit()
 
     def test_can_get_shortened_url(self):
         # Susan goes to the awesome url-shortener site
-        self.browser.get(self.live_server_url)
+        self.browser.get('http://localhost:8000')
 
         # She notices the page title mention shortner
         self.assertIn('Shortner', self.browser.title)
