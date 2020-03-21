@@ -1,0 +1,59 @@
+Some initial thoughts:
+* Will use TDD guidelines but ignore a bit BDD since I'm not so used to it yet.
+* Need to understand really fast how to use Celery, redis and heroku to complete this project.
+* This will not be a comprehensive solution (I have only 8 months using TDD and Django), but to show what I'm capable of.
+
+-------------------------------------------------------------------
+
+Thoughts about the solution itself:
+
+* "We must be able to put a URL into the home page and get back a URL of the shortest​ possible length."
+User interactions:
+- A simple django page with a form with one url input field and button for generating a shorter version
+Technical implementations:
+- We need a django Model "Url" for each Url shortener version with a "access_count" and a "title"
+- We need to have a Django ModelForm for that model with just a input.
+
+* "We must be redirected to the full URL when we enter the short URL"
+User interactions:
+- When user access the shortener version of the url needs to be redirected to the original link
+Technical implementations:
+- A "RedirectView" for this
+- Increment the "access_count" each time someone access that url
+
+* "There should be a page that shows the top 100 most frequently accessed URLs"
+User interactions:
+- Need to list the top 100 most frequently accessed urls.
+Technical implementations:
+- Should create a simple "ListView" and use the method "get_queryset" to filter the top 100 items ordered by "access_count".
+
+
+* "There must be a background job that crawls the URL being shortened, pulls the <title> from the website and stores it."
+Technical implementations:
+- I would like to use Celery to do this background job (never used before, but can do the job).
+- Probably will use BeautifulSoup in order to extract the pages titles and store it inside our "Url" model.
+
+* "Write a bot to populate your DB, and include it in the source code"
+Technical implementations:
+- I could use https://github.com/model-bakers/model_bakery for that.
+
+* "Deploy to heroku"
+Technical implementations:
+- I could use the Heroku getting starter project to make this easier
+
+-----------------------------------------------------------------------------
+
+To simplify this project:
+- I will just rely on our database to identify our urls and then retrieve the original. I will not code and decode urls or other more complex algorithm.
+I mean something like this scenario:
+
+Users input a url: https://www.youtube.com/watch?v=L3wKzyIN1yk&list=RDMMwDjeBNv6ip0&index=50
+
+I'll create a new entry on our database with:
+- id: 1,
+- title: '',
+- url_identifier: 'abc',
+- original_url: 'https://www.youtube.com/watch?v=L3wKzyIN1yk&list=RDMMwDjeBNv6ip0&index=50'
+- shortned_url: 'http://www.short.io/abc'
+
+So, everytime that someone tries to access: http://www.short.io/abc we will rely on our database to extract the Url entry for that identifier and then we redirect the user the "original_url".
