@@ -1,9 +1,9 @@
 from selenium import webdriver
-from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from django.contrib.staticfiles.testing import LiveServerTestCase
 
 
 
-class FunctionalTest(StaticLiveServerTestCase):
+class FunctionalTest(LiveServerTestCase):
     """docstring for FunctionalTest"""
 
     def setUp(self):
@@ -17,7 +17,7 @@ class FunctionalTest(StaticLiveServerTestCase):
 
     def test_can_get_shortened_url(self):
         # Susan goes to th awesome url-shortener site
-        self.browser.get('http:localhost:8000')
+        self.browser.get('http://localhost:8000')
 
         # She notices the page title mention shortner
         self.assertIn('Shortner', self.browser.title)
