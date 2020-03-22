@@ -9,6 +9,6 @@
 
 ### Install requirements:
 
-'''sh
+´´´sh
  $ pip install -r requirements.txt
-'''
+´´´
