@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+  <div class="container">
+    <h2>URL Shortner</h2>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Accesses</th>
+          <th scope="col">Title</th>
+          <th scope="col">URL</th>
+          <th scope="col">Shortened</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for url_object in urls %}
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>#{{ url_object.access_count }}</td>
+            <td>{{ url_object.title|default:'---' }}</td>
+            <td>
+              <a target="_blank" href="{{ url_object.original_url }}">
+                {{ url_object.original_url }}
+              </a>
+            </td>
+            <td>
+              <a target="_blank" href="{{ url_object.shortened_url }}">
+                /{{ url_object.url_identifier }}
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock content %}

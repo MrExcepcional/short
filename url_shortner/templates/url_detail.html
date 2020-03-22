@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+  <div class="container">
+    <h2>Shortened URL</h2>
+
+    <div class="card">
+      <div class="card-body">
+        <p class="card-text">Copy the shortened link and share it in messages, texts, posts, websites and other locations.</p>
+
+        <div class="form-group">
+          <label for="shortner-url">Shortner URL</label>
+          <input value="{{ object.shortened_url }}" autofocus="autofocus" type="email" class="form-control" id="shortner-url" aria-describedby="emailHelp">
+        </div>
+
+        <a href="#" class="card-link">Copy link</a>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
