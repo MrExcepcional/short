@@ -5,7 +5,7 @@ from django.db import models
 from django.urls import reverse_lazy
 from django_extensions.db.fields import CreationDateTimeField, ModificationDateTimeField
 
-from url_shortner.tasks import extract_title_from_url
+from urls.tasks import extract_title_from_url
 
 
 def url_identifier_generator():

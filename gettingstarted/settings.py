@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     "djcelery",
     # Project apps
     "common",
-    "url_shortner",
+    "urls",
 ]
 
 MIDDLEWARE = [

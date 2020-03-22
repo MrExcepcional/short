@@ -25,11 +25,14 @@ def wait(fn):
     return modified_fn
 
 
-class ShortenerTest(StaticLiveServerTestCase):
-    """docstring for ShortenerTest"""
+class FunctionalTest(StaticLiveServerTestCase):
+    """docstring for FunctionalTest"""
 
     def setUp(self):
-        self.browser=webdriver.Firefox()
+        self.browser = webdriver.Firefox()
+        # self.staging_server = os.environ.get('STAGING_SERVER')
+        # if self.staging_server:
+        #     self.live_server_url = 'http://' + self.staging_server
 
     def tearDown(self):
         self.browser.quit()

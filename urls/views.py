@@ -1,7 +1,7 @@
 from django.views.generic import CreateView, DetailView, RedirectView, ListView
 from django.shortcuts import get_object_or_404
 
-from url_shortner.models import Url
+from urls.models import Url
 
 
 class UrlCreateView(CreateView):

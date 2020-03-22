@@ -2,7 +2,7 @@ import requests
 
 from bs4 import BeautifulSoup
 
-from short import celery_app
+from gettingstarted import celery_app
 
 
 @celery_app.task(bind=True)

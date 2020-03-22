@@ -1,6 +1,6 @@
 from django import forms
 
-from url_shortner.models import Url
+from urls.models import Url
 
 
 class UrlForm(forms.ModelForm):

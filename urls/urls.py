@@ -1,8 +1,8 @@
 from django.urls import path
 
-from url_shortner import views
+from urls import views
 
-app_name = "url_shortner"
+app_name = "urls"
 
 urlpatterns = [
     path("", views.UrlCreateView.as_view(), name="create"),

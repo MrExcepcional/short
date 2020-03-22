@@ -4,8 +4,8 @@ from django.test import override_settings
 from django.test import TestCase
 from model_bakery import baker
 
-from url_shortner.models import Url
-from url_shortner.tasks import extract_title_from_url
+from urls.models import Url
+from urls.tasks import extract_title_from_url
 
 
 class TasksTestCase(TestCase):

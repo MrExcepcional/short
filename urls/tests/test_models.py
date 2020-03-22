@@ -3,7 +3,7 @@ import mock
 from django.test import TestCase
 from model_bakery import baker
 
-from url_shortner.models import Url
+from urls.models import Url
 
 
 class FakeUUID:
