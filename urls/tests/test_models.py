@@ -1,18 +1,18 @@
 import mock
 
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from model_bakery import baker
 
 from urls.models import Url
 
 
-class FakeUUID:
-    hex = "abcd"
+class FakeUrl:
+    url_identifier = "abcc"
 
 
 class UrlModelsTestCase(TestCase):
-    @mock.patch("uuid.uuid4", return_value=FakeUUID)
-    def test_create_urls_should_generate_a_url_identifier(
+    @mock.patch("urls.models.Url.objects.last", return_value=FakeUrl)
+    def test_create_urls_should_generate_a_url_identifier_within_sequence(
         self, url_identifier_generator
     ):
         url = baker.make(Url)
@@ -38,6 +38,12 @@ class UrlModelsTestCase(TestCase):
         url = baker.make(Url, url_identifier="abcd")
 
         self.assertEqual(url.get_absolute_url(), "/urls/abcd/")
+
+    @override_settings(BASE_APP_URL='http://localhost:8000')
+    def test_shortened_url(self):
+        url = baker.make(Url, url_identifier='abcd')
+
+        self.assertEqual(url.shortened_url, 'http://localhost:8000/abcd')
 
     def test_increment_access_count(self):
         url = baker.make(Url, url_identifier="abcd")

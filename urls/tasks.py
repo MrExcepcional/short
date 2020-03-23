@@ -9,10 +9,11 @@ from gettingstarted import celery_app
 def extract_title_from_url(self, url_id):
     from urls.models import Url
 
-    url = Url.objects.get(id=url_id)
+    url = Url.objects.filter(id=url_id).first()
 
-    response = requests.get(url.original_url)
-    soup = BeautifulSoup(response.content, "html.parser")
+    if url:
+	    response = requests.get(url.original_url)
+	    soup = BeautifulSoup(response.content, "html.parser")
 
-    url.title = soup.title.string
-    url.save()
+	    url.title = soup.title.string
+	    url.save()

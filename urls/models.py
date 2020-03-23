@@ -1,4 +1,4 @@
-import uuid
+import string
 
 from django.conf import settings
 from django.db import models
@@ -8,11 +8,18 @@ from django_extensions.db.fields import CreationDateTimeField, ModificationDateT
 from urls.tasks import extract_title_from_url
 
 
-def url_identifier_generator():
-    identifier = uuid.uuid4().hex[:4]
+SEQUENCE = tuple(string.digits+string.ascii_letters)
 
-    while Url.objects.filter(url_identifier=identifier).exists():
-        identifier = uuid.uuid4().hex[:4]
+
+def url_identifier_generator():
+    latest = Url.objects.last()
+
+    if latest:
+        latest = latest.url_identifier
+        next_value = SEQUENCE[(SEQUENCE.index(latest[-1])+1)%len(SEQUENCE)]
+        identifier = latest[:-1]+next_value
+    else:
+        identifier = SEQUENCE[0]
 
     return identifier
 
