@@ -12,6 +12,7 @@ SEQUENCE = tuple(string.digits+string.ascii_letters)
 
 
 def url_identifier_generator():
+    # TODO: this collides after 62 entries. Improve!
     latest = Url.objects.last()
 
     if latest:
