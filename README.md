@@ -1,7 +1,8 @@
-## Project to demonstrate my acquired skills
+## Project to demonstrate my skills with 
+### Django, unit testing, functional testing, black box testing, Selenium, redis, Celery
 
 ### Constrains of this demostration project:
-- I will only test with Firefoxwebdriver for simplification.
+- I will only test with Firefoxwebdriver for simplification and showing purposes.
 
 ### Install pre-requirements:
 * Download and extract geckodriver on your (windows) python scripts folder or the same folder as your code. For mac or linux usr/local/bin is a good place (you'll use sudo)
