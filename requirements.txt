@@ -4,7 +4,8 @@ asgiref==3.2.5
 beautifulsoup4==4.8.2
 billiard==3.3.0.23
 celery>=5.2.2
-certifi==2023.7.22
+certifi==2022.12.7
+
 chardet==3.0.4
 dj-database-url==0.5.0
 Django>=3.1.14
